@@ -3,6 +3,7 @@ const { Recipe } = require('./recipe');
 
 const router = express.Router();
 
+// GET RECIPES
 router.get('/', (req, res) => {
   Recipe.find()
     .then((recipes) => {
@@ -13,7 +14,8 @@ router.get('/', (req, res) => {
     });
 });
 
-router.put('/:id', (req, res) => {
+// UPDATE RECIPES
+router.patch('/:id', (req, res) => {
   const { id } = req.params;
 
   Recipe.findByIdAndUpdate({ _id: id }, req.body, { new: true }, (err, recipe) => {
@@ -22,6 +24,7 @@ router.put('/:id', (req, res) => {
   });
 });
 
+// ADD NEW RECIPE
 router.post('/new', (req, res) => {
   const recipe = new Recipe(req.body);
   recipe.save()
@@ -33,6 +36,7 @@ router.post('/new', (req, res) => {
     });
 });
 
+// DELETE RECIPE
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
   Recipe.findByIdAndRemove(id, (err) => {

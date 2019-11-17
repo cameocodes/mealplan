@@ -11,7 +11,7 @@ const recipeSchema = new Schema({
   description: String,
   ingredients: [
     {
-      name: [ingredientSchema],
+      name: ingredientSchema,
       amount: Number,
       measurement: String,
     },
